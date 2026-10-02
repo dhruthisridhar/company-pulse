@@ -1,0 +1,15 @@
+:root { --brand: #3a5bd9; --ok: #1e8a4c; --bad: #c0392b; }
+.pulse-header h1 { color: #fff; background: var(--brand); margin: 0; padding: .6em; text-shadow: none; font-size: 1.2em; }
+.ui-content { max-width: 720px; margin: 0 auto; }
+.card { display: flex; gap: 12px; align-items: flex-start; padding: 12px; margin: 10px 0; border: 1px solid #dde3ee; border-radius: 10px; background: #fff; }
+.card.whisper { background: #fff7e6; border-color: #f0d9a8; }
+.card .body { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.thumb { width: 100px; height: 100px; border-radius: 8px; object-fit: cover; flex: none; }
+form.inline { display: inline-block; margin: 4px 4px 0 0; }
+.tag { font-size: .8em; background: #f0d9a8; border-radius: 10px; padding: 2px 8px; margin-left: 6px; }
+.hint { font-size: .8em; color: #777; min-height: 1.2em; }
+.ok { color: var(--ok); } .bad { color: var(--bad); }
+@media (max-width: 480px) {
+  .thumb { width: 64px; height: 64px; }
+  .ui-navbar .ui-btn { font-size: 11px; padding: .7em .2em; }
+}
