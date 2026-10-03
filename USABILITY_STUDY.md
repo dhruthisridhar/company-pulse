@@ -9,7 +9,7 @@
 
 ### Before the session (facilitator checklist)
 
-- [ ] Run `./launch_website.sh` and open `http://localhost:8000` on the computer the participant will use. The simplest setup is to let the participant use your own computer, which also makes screen recording easy.
+- [ ] Run `./launch_website.sh --network` on your computer and open the "Network" address it prints on the computer the participant will use (both devices on the same Wi-Fi). Check that the site loads before the session, and that their screen and voice can be recorded.
 - [ ] Create two demo members, `demo_alex` and `demo_sam`, each with a short bio. Log in as `demo_sam`, follow `demo_alex`, and send `demo_alex` one public message and one whisper, so the feed is not empty. Log out.
 - [ ] Start the recording (QuickTime or Zoom screen recording, with the participant's voice on). Record the screen and audio.
 - [ ] Have a `.jpg` or `.png` picture ready on the participant's desktop.
