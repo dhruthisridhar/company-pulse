@@ -50,8 +50,9 @@ function followButton($who, $action, $label) {
         '<input type="hidden" name="who" value="' . e($who) . '">' .
         '<button name="' . $action . '" value="1" class="ui-btn ui-btn-inline ui-mini ui-corner-all">' . e($label) . '</button></form>';
 }
-function userCard($u, $actions = '') {
-    return '<div class="card"><img class="thumb" src="' . e(thumb($u)) . '" width="100" height="100" alt="">' .
-        '<div class="body"><a href="profile.php?view=' . urlencode($u) . '" data-ajax="false"><strong>' . e($u) . '</strong></a><div>' . $actions . '</div></div></div>';
+function userCard($u, $actions = '', $sub = '') {
+    return '<div class="card user"><img class="thumb" src="' . e(thumb($u)) . '" width="100" height="100" alt="">' .
+        '<div class="body"><div class="who"><a href="profile.php?view=' . urlencode($u) . '" data-ajax="false"><strong>' . e($u) . '</strong></a>' .
+        ($sub !== '' ? '<div class="hint">' . e($sub) . '</div>' : '') . '</div><div class="acts">' . $actions . '</div></div></div>';
 }
 function pageEnd() { echo '</div></div></body></html>'; }

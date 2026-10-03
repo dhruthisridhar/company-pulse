@@ -29,10 +29,12 @@ $title = 'Messages'; require 'includes/header.php';
     <input type="radio" name="type" id="pub" value="public" <?= $to === '' ? 'checked' : '' ?>><label for="pub">Public</label>
     <input type="radio" name="type" id="priv" value="private" <?= $to !== '' ? 'checked' : '' ?>><label for="priv">Private whisper</label>
   </fieldset>
+  <div id="whisper-to">
   <label for="to">Whisper to</label>
   <select name="to" id="to">
     <?php foreach ($members as $m): ?><option value="<?= e($m) ?>" <?= $m === $to ? 'selected' : '' ?>><?= e($m) ?></option><?php endforeach; ?>
   </select>
+  </div>
   <button type="submit" class="ui-btn ui-btn-b ui-corner-all">Send</button>
 </form>
 <?php foreach ($feed as $m): ?>
@@ -41,7 +43,7 @@ $title = 'Messages'; require 'includes/header.php';
     <div class="body">
       <strong><a href="profile.php?view=<?= urlencode($m['auth']) ?>" data-ajax="false"><?= e($m['auth']) ?></a></strong>
       <?= $m['pm'] ? '<span class="tag">whispered to ' . e($m['recip']) . '</span>' : '' ?>
-      <div class="hint"><?= e($m['sent']) ?></div>
+      <div class="hint"><?= e(date('M j, g:i A', strtotime($m['sent']))) ?></div>
       <p><?= nl2br(e($m['message'])) ?></p>
       <?php if ($m['auth'] === $me || $m['recip'] === $me): ?>
         <form method="post" data-ajax="false" class="inline"><?= csrfField() ?>
@@ -49,5 +51,13 @@ $title = 'Messages'; require 'includes/header.php';
       <?php endif; ?>
     </div>
   </div>
-<?php endforeach; if (!$feed) echo '<p>No messages yet.</p>';
-pageEnd();
+<?php endforeach; if (!$feed) echo '<p>No messages yet.</p>'; ?>
+<script>
+$(function () {
+  function sync() { $('#whisper-to').toggle($('#priv').is(':checked')); }
+  $('input[name=type]').on('change', sync);
+  $(document).on('click', 'label[for=pub], label[for=priv]', function () { setTimeout(sync, 0); });
+  sync();
+});
+</script>
+<?php pageEnd();

@@ -1,15 +1,85 @@
-:root { --brand: #3a5bd9; --ok: #1e8a4c; --bad: #c0392b; }
-.pulse-header h1 { color: #fff; background: var(--brand); margin: 0; padding: .6em; text-shadow: none; font-size: 1.2em; }
-.ui-content { max-width: 720px; margin: 0 auto; }
-.card { display: flex; gap: 12px; align-items: flex-start; padding: 12px; margin: 10px 0; border: 1px solid #dde3ee; border-radius: 10px; background: #fff; }
-.card.whisper { background: #fff7e6; border-color: #f0d9a8; }
-.card .body { flex: 1; min-width: 0; overflow-wrap: anywhere; }
-.thumb { width: 100px; height: 100px; border-radius: 8px; object-fit: cover; flex: none; }
-form.inline { display: inline-block; margin: 4px 4px 0 0; }
-.tag { font-size: .8em; background: #f0d9a8; border-radius: 10px; padding: 2px 8px; margin-left: 6px; }
-.hint { font-size: .8em; color: #777; min-height: 1.2em; }
-.ok { color: var(--ok); } .bad { color: var(--bad); }
-@media (max-width: 480px) {
-  .thumb { width: 64px; height: 64px; }
-  .ui-navbar .ui-btn { font-size: 11px; padding: .7em .2em; }
+/* Company Pulse: one accent (cobalt), quiet surfaces, a heartbeat line as the signature. */
+:root { --mist:#F1F3FA; --paper:#fff; --ink:#1A2233; --muted:#667089; --line:#DFE4F0;
+  --cobalt:#2E4BF0; --cobalt-d:#2038C4; --tint:#E8ECFF; --amber:#FFF1D6; --amber-edge:#E8A93C;
+  --ok:#137A4F; --bad:#B3261E; --r:10px; --display:Sora,Figtree,system-ui,sans-serif; }
+html, body, body .ui-page { background:var(--mist); color:var(--ink); font-family:Figtree,system-ui,-apple-system,"Segoe UI",sans-serif; font-size:16px; line-height:1.5; text-shadow:none; }
+body .ui-page a { color:var(--cobalt); text-decoration:none; }
+body .ui-page a:hover { text-decoration:underline; }
+:focus-visible { outline:2px solid var(--cobalt); outline-offset:2px; }
+
+/* Header and the heartbeat trace */
+.site-head { background:var(--paper); border-bottom:1px solid var(--line); }
+.wrap { max-width:760px; margin:0 auto; padding:0 20px; }
+.top { display:flex; align-items:center; justify-content:space-between; padding-top:18px; }
+body .ui-page a.brand { font:700 1.5rem/1 var(--display); letter-spacing:-.02em; color:var(--ink); text-decoration:none; }
+body .ui-page a.me { display:flex; align-items:center; gap:8px; font-weight:600; font-size:.9rem; color:var(--ink); }
+.me img { width:28px; height:28px; border-radius:50%; object-fit:cover; }
+.trace { display:block; width:100%; height:28px; margin-top:6px; }
+.trace path { fill:none; stroke:var(--cobalt); stroke-width:2; stroke-linejoin:round; vector-effect:non-scaling-stroke;
+  stroke-dasharray:2000; stroke-dashoffset:2000; animation:trace 1.6s .1s ease-out forwards; }
+.traced .trace path { animation:none; stroke-dashoffset:0; }
+@keyframes trace { to { stroke-dashoffset:0; } }
+@media (prefers-reduced-motion:reduce) { .trace path { animation:none; stroke-dashoffset:0; } }
+.tabs { display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; }
+body .ui-page .tabs a { padding:12px 12px; margin-bottom:-1px; color:var(--muted); font-weight:500; white-space:nowrap; border-bottom:3px solid transparent; }
+body .ui-page .tabs a:hover { color:var(--ink); text-decoration:none; }
+body .ui-page .tabs a.active { color:var(--ink); font-weight:600; border-bottom-color:var(--cobalt); }
+
+/* Content and type */
+body .ui-page .ui-content { max-width:760px; margin:0 auto; padding:8px 20px 56px; background:transparent; }
+body .ui-page h2 { font:700 1.7rem/1.2 var(--display); letter-spacing:-.02em; margin:1.1em 0 .5em; }
+body .ui-page h3 { font:600 .95rem Figtree,sans-serif; color:var(--muted); margin:1.8em 0 0; padding-bottom:.5em; border-bottom:1px solid var(--line); }
+.hero { padding:36px 0 12px; }
+body .ui-page .hero h1 { font:700 clamp(2rem,6vw,2.9rem)/1.1 var(--display); letter-spacing:-.03em; margin:0 0 .4em; max-width:16ch; }
+.hero p { color:var(--muted); font-size:1.1rem; max-width:46ch; margin:0 0 1.4em; }
+
+/* Rows for members and messages */
+.card { display:flex; gap:14px; align-items:flex-start; padding:16px 12px; border-bottom:1px solid var(--line); }
+.card .thumb { width:52px; height:52px; border-radius:50%; object-fit:cover; flex:none; }
+.card .body { flex:1; min-width:0; overflow-wrap:anywhere; }
+.card .body p { margin:.25em 0 .5em; }
+body .ui-page .card a { color:var(--ink); }
+.card.whisper { background:var(--amber); border-left:3px solid var(--amber-edge); }
+.tag { margin-left:8px; padding:1px 9px; font-size:.75rem; font-weight:600; color:#8A5A00; background:var(--paper); border:1px solid var(--amber-edge); border-radius:999px; }
+.hint { color:var(--muted); font-size:.8rem; min-height:1.3em; }
+form.inline { display:inline-block; margin:6px 6px 0 0; }
+.ui-content > .thumb { display:block; width:100px; height:100px; margin:.5em 0 1em; object-fit:cover; border-radius:24px; border:3px solid var(--paper); box-shadow:0 0 0 1px var(--line); }
+p.ok, p.bad { padding:.7em 1em; background:var(--paper); border-radius:var(--r); border-left:3px solid currentColor; }
+.ok { color:var(--ok); } .bad { color:var(--bad); }
+
+/* jQuery Mobile widgets: forms and buttons */
+body .ui-page label { display:block; margin:1.1em 0 .35em; font-weight:600; font-size:.9rem; }
+body .ui-page .ui-input-text, body .ui-page textarea.ui-input-text, body .ui-page .ui-select .ui-btn { background:var(--paper); border:1px solid var(--line); border-radius:var(--r); box-shadow:none; color:var(--ink); }
+body .ui-page .ui-input-text input, body .ui-page textarea.ui-input-text { font:inherit; min-height:2.8em; padding:.7em .85em; color:var(--ink); background:transparent; text-shadow:none; }
+body .ui-page .ui-focus, body .ui-page .ui-input-text:focus-within { border-color:var(--cobalt); box-shadow:0 0 0 3px rgba(46,75,240,.18); }
+body .ui-page input[type=file] { font:inherit; margin:.2em 0 1em; }
+body .ui-page form:not(.inline) { max-width:560px; }
+body .ui-page .ui-btn { background:var(--paper); color:var(--ink); border:1px solid var(--line); border-radius:var(--r); font-weight:600; text-shadow:none; box-shadow:none; padding:.75em 1.2em; }
+body .ui-page .ui-btn:hover, body .ui-page .ui-btn:focus { background:#F7F8FD; border-color:#C4CCE2; text-decoration:none; }
+body .ui-page .ui-btn.ui-btn-b { background:var(--cobalt); border-color:var(--cobalt); color:#fff; }
+body .ui-page .ui-btn.ui-btn-b:hover, body .ui-page .ui-btn.ui-btn-b:focus { background:var(--cobalt-d); border-color:var(--cobalt-d); }
+body .ui-page .ui-mini { padding:.5em .9em; font-size:.85rem; }
+body .ui-page .ui-controlgroup-horizontal .ui-btn { border-radius:0; }
+body .ui-page .ui-controlgroup-horizontal .ui-first-child .ui-btn, body .ui-page .ui-controlgroup-horizontal .ui-first-child { border-radius:var(--r) 0 0 var(--r); }
+body .ui-page .ui-controlgroup-horizontal .ui-last-child .ui-btn, body .ui-page .ui-controlgroup-horizontal .ui-last-child { border-radius:0 var(--r) var(--r) 0; }
+body .ui-page .ui-radio label.ui-btn { padding-left:1.2em; }
+body .ui-page .ui-radio label.ui-btn:after { display:none; }
+body .ui-page .ui-radio label.ui-btn.ui-radio-on { background:var(--tint); border-color:var(--cobalt); color:var(--cobalt-d); }
+
+@media (max-width:480px) {
+  .wrap { padding:0 14px; }
+  body .ui-page .ui-content { padding:8px 14px 48px; }
+  .card .thumb { width:44px; height:44px; }
 }
+
+/* Primary buttons: win over jQuery Mobile's dark theme */
+body .ui-page .ui-btn.ui-btn-b { background:#2E4BF0 !important; border-color:#2E4BF0 !important; color:#fff !important; text-shadow:none !important; }
+body .ui-page .ui-btn.ui-btn-b:hover, body .ui-page .ui-btn.ui-btn-b:focus { background:#2038C4 !important; border-color:#2038C4 !important; }
+
+/* Member and friend rows: name and bio on the left, actions on the right */
+.card.user { align-items:center; }
+.card.user .body { display:flex; align-items:center; justify-content:space-between; gap:8px 12px; flex-wrap:wrap; }
+.card.user .who { flex:1 1 180px; min-width:0; }
+.card.user .hint { min-height:0; margin-top:2px; }
+.card.user .acts { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.card.user form.inline, .card.user .ui-btn { margin:0; }
