@@ -96,6 +96,12 @@ Thank the participant and stop the recording.
 | | | | |
 | | | | |
 
+### Feedback and suggestions from testers
+
+*List what the testers said they would change or add, in their own words where possible.*
+
+-
+
 ### Participant quotes
 
 > "" (Participant __, Task __)
