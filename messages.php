@@ -52,12 +52,4 @@ $title = 'Messages'; require 'includes/header.php';
     </div>
   </div>
 <?php endforeach; if (!$feed) echo '<p>No messages yet.</p>'; ?>
-<script>
-$(function () {
-  function sync() { $('#whisper-to').toggle($('#priv').is(':checked')); }
-  $('input[name=type]').on('change', sync);
-  $(document).on('click', 'label[for=pub], label[for=priv]', function () { setTimeout(sync, 0); });
-  sync();
-});
-</script>
 <?php pageEnd();

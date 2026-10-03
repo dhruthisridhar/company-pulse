@@ -26,13 +26,4 @@ $title = 'Sign Up'; require 'includes/header.php';
   <input type="password" name="pass" id="pass" minlength="6" required>
   <button type="submit" class="ui-btn ui-btn-b ui-corner-all">Sign Up</button>
 </form>
-<script>
-$(function () {
-  $('#user').on('keyup blur', function () {
-    var u = $.trim(this.value);
-    if (u.length < 3) { $('#info').empty(); return; }
-    $.get('checkuser.php', { user: u }, function (html) { $('#info').html(html); });
-  });
-});
-</script>
 <?php pageEnd();

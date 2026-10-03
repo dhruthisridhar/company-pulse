@@ -20,6 +20,7 @@ $nav = loggedIn()
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>$(document).on('mobileinit', function () { $.mobile.ajaxEnabled = false; });</script>
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/app.js"></script>
 </head>
 <body>
 <div data-role="page">
